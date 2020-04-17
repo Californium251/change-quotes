@@ -3,10 +3,19 @@
     height: 300px;
 }
 
+#button {
+    height: 50px;
+    width: 50%;
+    background-color: #ff6600;
+    font-size: 20px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     width: 70%;
     margin: 0 auto;
+    height: 370px;
 }

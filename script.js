@@ -1,6 +1,12 @@
 let changeQuotes = (text) => {
 	let regex = /"(.+?)"/gmi;
-	return text.replace(regex, "\“$1\”")
+	return text.split("\n").map((line) => {
+		if (!line.startsWith("        ")) {
+			return line.replace(regex, "\“$1\”")
+		} else {
+			return line;
+		}
+	}).join("\n");
 }
 
 document.querySelector('#button').addEventListener('click', () => {
