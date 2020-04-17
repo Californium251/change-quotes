@@ -1,0 +1,12 @@
+#text {
+    width: 100%;
+    height: 300px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+    margin: 0 auto;
+}
