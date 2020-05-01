@@ -1,3 +1,5 @@
+// Замена кавычек
+
 let showError = (errorMessage) => {
 	let errorBlock = document.querySelector('.error');
 	errorBlock.querySelector('.errorMessage').textContent = errorMessage;
@@ -8,7 +10,7 @@ let closeError = (error) => {
 	error.style.display = 'none';
 }
 
-let changeQuotes = (text) => {
+let changeQuotes = (text, quotes) => {
 	let quoteFlag = false;
 	let codeFlag = false;
 	let textArr = text.split('');
@@ -26,9 +28,9 @@ let changeQuotes = (text) => {
 			if (sym === '\"') {
 				quoteFlag = !quoteFlag;
 				if (quoteFlag) {
-					return '“'
+					return quotes[0]
 				} else {
-					return '”'
+					return quotes[1]
 				}
 			}
 		}
@@ -36,10 +38,40 @@ let changeQuotes = (text) => {
 	}).join('');
 }
 
-document.querySelector('#button').addEventListener('click', () => {
-	document.querySelector('#text').value = changeQuotes(document.querySelector('#text').value)
+// Неразрывные пробелы
+
+let changeSpaces = (text) => {
+	let letterCounter = 3;
+	return text.split('').map((letter) => {
+		if (letter !== ' ') {
+			letterCounter++;
+		} else if (letterCounter <= 2) {
+			letterCounter = 0;
+			return ' ';
+		} else {
+			letterCounter = 0;
+		}
+
+		return letter;
+	}).join('');
+}
+
+// Слушатели
+
+let textContainer = document.querySelector('#text');
+
+document.querySelector('.engQuotes').addEventListener('click', () => {
+	textContainer.value = changeQuotes(textContainer.value, '“”')
+})
+
+document.querySelector('.rusQuotes').addEventListener('click', () => {
+	textContainer.value = changeQuotes(textContainer.value, '«»')
 })
 
 document.querySelector('.cross').addEventListener('click', () => {
 	document.querySelector('.error').style.display = 'none';
+});
+
+document.querySelector('.spaces').addEventListener('click', () => {
+	textContainer.value = changeSpaces(textContainer.value);
 });

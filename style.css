@@ -7,7 +7,12 @@ body {
     height: 300px;
 }
 
-#button {
+.button-container {
+    width: 100%;
+    display: flex;
+}
+
+.button {
     height: 50px;
     width: 50%;
     background-color: #ff6600;
